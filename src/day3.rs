@@ -10,6 +10,7 @@ fn prio(i: char) -> i32 {
 
 
 pub fn run(s: &str) {
+    println!("Day 3:");
     let a: i32 = s.lines().map(|line| {
         let a = &line[0..line.len()/2];
         let b = &line[line.len()/2..];
@@ -21,7 +22,7 @@ pub fn run(s: &str) {
         }
         panic!()
     }).sum();
-    println!("{a}");
+    println!("\tPart 1: {a}");
 
     let b: i32 = s.lines().array_chunks().map(|[a, b, c]| {
         for i in a.chars() {
@@ -31,6 +32,6 @@ pub fn run(s: &str) {
         }
         panic!()
     }).sum();
-    println!("{b}");
+    println!("\tPart 2: {b}");
 }
 

@@ -3,6 +3,8 @@ use std.list.List
 use std.c.printf
 use std.panic
 
+# code not finished
+
 prio :: fn(c u8) -> i32 {
     match c {
         65..90: c - 65 + 1,

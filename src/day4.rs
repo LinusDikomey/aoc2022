@@ -9,6 +9,7 @@ fn r(range: &str) -> RangeInclusive<i32> {
 }
 
 pub fn run(s: &str) {
+    println!("Day 4:");
     let i: Vec<_> = s.trim().lines().map(|l| {
         let (a, b) = l.split_once(',').unwrap();
         (r(a), r(b))
@@ -18,7 +19,7 @@ pub fn run(s: &str) {
         (a.start() >= b.start() && a.end() <= b.end())
         || (b.start() >= a.start() && b.end() <= a.end())
     ).count();
-    println!("Part 1: {a}");
+    println!("\tPart 1: {a}");
 
     let b = i.iter().filter(|(a, b)|
         if a.start() < b.start() {
@@ -27,6 +28,6 @@ pub fn run(s: &str) {
             b.end() >= a.start()
         }
     ).count();
-    println!("Part 2: {b}");
+    println!("\tPart 2: {b}");
 }
 

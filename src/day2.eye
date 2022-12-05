@@ -13,7 +13,7 @@ shape_score:: fn(shape Shape) -> u32: match shape {
 Goal :: enum { Lose Draw Win }
 
 main :: fn {
-    input := std.file.read_to_string("input/day2.txt")
+    input := std.file.read_to_string("src/input/day2.txt")
     lines := string.lines(input.ptr)
     
     printf("%d".ptr, lines.len)

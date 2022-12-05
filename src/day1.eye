@@ -3,7 +3,7 @@ use std.string
 use std.ptr_add
 
 main :: fn {
-    input := std.file.read_to_string("input/day1.txt")
+    input := std.file.read_to_string("src/input/day1.txt")
     lines := string.lines(input.ptr)
     
 

@@ -1,6 +1,7 @@
 use std::array;
 
 pub fn run(s: &str) {
+    println!("Day 5:");
     let (stacks, cmds) = s.split_once("\n\n").unwrap();
     let rows: Vec<[char; 9]> = stacks
         .lines()
@@ -32,6 +33,6 @@ pub fn run(s: &str) {
         stacks.map(|stack| *stack.last().unwrap()).into_iter().collect()
     };
 
-    println!("Part 1: {}", moves(stacks.clone(), true));
-    println!("Part 2: {}", moves(stacks.clone(), false));
+    println!("\tPart 1: {}", moves(stacks.clone(), true));
+    println!("\tPart 2: {}", moves(stacks.clone(), false));
 }
