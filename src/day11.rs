@@ -1,4 +1,5 @@
 use std::{str::FromStr, mem};
+use lstd::*;
 
 pub fn run(input: &str) {
     println!("Day 11:");
@@ -6,7 +7,7 @@ pub fn run(input: &str) {
         .array_chunks()
         .map(Monkey::parse)
         .collect();
-    let div = monkeys.iter().fold(1, |x, m| x * m.test);
+    let div = monkeys.iter().map(|m| m.test).product();
     // ---------- part 1 ----------
     println!("\tPart 1: {}", calc(monkeys.clone(), 20, 3, div));
     // ---------- part 2 ----------
@@ -42,15 +43,18 @@ impl Monkey {
             _ => panic!("unknown op")
         };
         let test = s[3]
-            .trim_start_matches("  Test: divisible by ")
+            .trim()
+            .trim_start_matches("Test: divisible by ")
             .parse().unwrap();
 
         let on_true = s[4]
-            .trim_start_matches("    If true: throw to monkey ")
+            .trim()
+            .trim_start_matches("If true: throw to monkey ")
             .parse().unwrap();
 
         let on_false = s[5]
-            .trim_start_matches("    If false: throw to monkey ")
+            .trim()
+            .trim_start_matches("If false: throw to monkey ")
             .parse().unwrap();
 
         Monkey {
@@ -95,6 +99,11 @@ fn calc(mut monkeys: Vec<Monkey>, rounds: usize, worry_divide: Item, div: Item) 
             monkeys[on_false].items.extend(f);
         }
     }
-    monkeys.sort_by_key(|m| m.inspect_count);
-    monkeys.iter().rev().take(2).fold(1, |x, m| x * m.inspect_count)
+    monkeys 
+        .iter()
+        .map(|m| m.inspect_count)
+        .max_n::<2>()
+        .into_iter()
+        .map(|n| n.unwrap())
+        .product()
 }
